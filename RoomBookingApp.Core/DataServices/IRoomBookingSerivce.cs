@@ -1,0 +1,9 @@
+﻿using RoomBookingApp.Core.Domain;
+
+namespace RoomBookingApp.Core.DataServices
+{
+    public interface IRoomBookingSerivce
+    {
+        void Save(RoomBooking roomBooking);
+    }
+}
