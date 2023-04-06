@@ -1,7 +1,9 @@
 using Microsoft.Data.Sqlite;
 using Microsoft.EntityFrameworkCore;
+using RoomBookingApp.Core.DataServices;
 using RoomBookingApp.Core.Processors;
 using RoomBookingApp.Persistance;
+using RoomBookingApp.Persistance.Repositories;
 
 namespace RoomBookingApp.Api
 {
@@ -24,6 +26,7 @@ namespace RoomBookingApp.Api
 
             builder.Services.AddDbContext<RoomBookingAppDbContext>(opt => opt.UseSqlite(conn));
 
+            builder.Services.AddScoped<IRoomBookingSerivce, RoomBookingService>();
             builder.Services.AddScoped<IRoomBookingRequestProcessor, RoomBookingRequestProcessor>();
 
             var app = builder.Build();

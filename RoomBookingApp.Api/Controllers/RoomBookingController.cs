@@ -1,5 +1,4 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using RoomBookingApp.Core.Models;
 using RoomBookingApp.Core.Processors;
 
@@ -19,7 +18,7 @@ namespace RoomBookingApp.Api.Controllers
         [HttpPost]
         public async Task<IActionResult> BookRoom(RoomBookingRequest request)
         {
-            if(ModelState.IsValid)
+            if (ModelState.IsValid)
             {
                 var result = _roomBookingRequestProcessor.BookRoom(request);
                 if (result.Flag == Core.Enums.BookingResultFlag.Success)

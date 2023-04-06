@@ -4,11 +4,6 @@ using RoomBookingApp.Api.Controllers;
 using RoomBookingApp.Core.Enums;
 using RoomBookingApp.Core.Models;
 using RoomBookingApp.Core.Processors;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Xunit;
 
 namespace RoomBookingApp.Api.Tests
