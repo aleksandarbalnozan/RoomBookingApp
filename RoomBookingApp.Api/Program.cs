@@ -1,3 +1,7 @@
+using Microsoft.Data.Sqlite;
+using Microsoft.EntityFrameworkCore;
+using RoomBookingApp.Core.Processors;
+using RoomBookingApp.Persistance;
 
 namespace RoomBookingApp.Api
 {
@@ -13,6 +17,14 @@ namespace RoomBookingApp.Api
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
+
+            var connString = "DataSource=:memory:";
+            var conn = new SqliteConnection(connString);
+            conn.Open();
+
+            builder.Services.AddDbContext<RoomBookingAppDbContext>(opt => opt.UseSqlite(conn));
+
+            builder.Services.AddScoped<IRoomBookingRequestProcessor, RoomBookingRequestProcessor>();
 
             var app = builder.Build();
 

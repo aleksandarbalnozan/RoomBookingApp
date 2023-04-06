@@ -28,8 +28,8 @@ namespace RoomBookingApp.Persistance.Tests
             context.Rooms.Add(new Room { Id = 2, Name = "Room 2" });
             context.Rooms.Add(new Room { Id = 3, Name = "Room 3" });
 
-            context.RoomBookings.Add(new RoomBooking { RoomId = 1, Date = date });
-            context.RoomBookings.Add(new RoomBooking { RoomId = 2, Date = date.AddDays(-1) });
+            context.RoomBookings.Add(new RoomBooking { Email = "test@test.com", FullName = "Test Test", RoomId = 1, Date = date });
+            context.RoomBookings.Add(new RoomBooking { Email = "test@test.com", FullName = "Test Test", RoomId = 2, Date = date.AddDays(-1) });
 
             context.SaveChanges();
 
@@ -51,7 +51,7 @@ namespace RoomBookingApp.Persistance.Tests
             var dbOptions = new DbContextOptionsBuilder<RoomBookingAppDbContext>().UseInMemoryDatabase("SaveRoomTest")
                .Options;
 
-            var roomBooking = new RoomBooking { RoomId = 1, Date = new DateTime(2021, 06, 09) };
+            var roomBooking = new RoomBooking { Email = "test@test.com", FullName = "Test Test", RoomId = 1, Date = new DateTime(2021, 06, 09) };
 
             using var context = new RoomBookingAppDbContext(dbOptions);
             var roomBookingSerivice = new RoomBookingService(context);
