@@ -12,18 +12,19 @@ namespace RoomBookingApp.Persistance.Repositories
     {
         private readonly RoomBookingAppDbContext _context;
 
-        public RoomBookingService(RoomBookingAppDbContext context )
+        public RoomBookingService(RoomBookingAppDbContext context)
         {
             _context = context;
         }
         public IEnumerable<Room> GetAvailableRooms(DateTime date)
         {
-            throw new NotImplementedException();
+            return _context.Rooms.Where(q => !q.RoomBookings.Any(x => x.Date == date)).ToList();
         }
 
         public void Save(RoomBooking roomBooking)
         {
-            throw new NotImplementedException();
+            _context.RoomBookings.Add(roomBooking);
+            _context.SaveChanges();
         }
     }
 }
