@@ -27,6 +27,9 @@ namespace RoomBookingApp.Core.Tests
             _availableRooms = new List<Room>()
             {
                 new Room()
+                {
+                    Id = 1
+                }
             };
 
             _roomBookingServiceMock = new Mock<IRoomBookingSerivce>();
@@ -74,6 +77,7 @@ namespace RoomBookingApp.Core.Tests
             Assert.Equal(_request.FullName, savedBooking.FullName);
             Assert.Equal(_request.Email, savedBooking.Email);
             Assert.Equal(_request.Date, savedBooking.Date);
+            Assert.Equal(_availableRooms.First().Id, savedBooking.RoomId);
         }
 
         [Fact]
