@@ -86,7 +86,7 @@ namespace RoomBookingApp.Core.Tests
         {
             _availableRooms.Clear();
             _processor.BookRoom(_request);
-            _roomBookingServiceMock.Verify(q=>q.Save(It.IsAny<RoomBooking>()), Times.Never());
+            _roomBookingServiceMock.Verify(q => q.Save(It.IsAny<RoomBooking>()), Times.Never());
         }
 
         [Theory]
@@ -102,6 +102,28 @@ namespace RoomBookingApp.Core.Tests
             var result = _processor.BookRoom(_request);
 
             Assert.Equal(bookingResultFlag, result.Flag);
+        }
+
+        [Theory]
+        [InlineData(1, true)]
+        [InlineData(null, false)]
+        public void Should_Return_RoomBookingId_In_Result(int? roomBookingId, bool isAvailable)
+        {
+            if (!isAvailable)
+            {
+                _availableRooms.Clear();
+            }
+            else
+            {
+                _roomBookingServiceMock.Setup(q => q.Save(It.IsAny<RoomBooking>()))
+                .Callback<RoomBooking>(booking =>
+                {
+                    booking.Id = roomBookingId.Value;
+                });
+            }
+
+            var result = _processor.BookRoom(_request);
+            Assert.Equal(roomBookingId, result.RoomBookingId);
         }
     }
 }
