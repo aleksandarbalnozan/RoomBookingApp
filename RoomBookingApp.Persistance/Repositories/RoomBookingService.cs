@@ -8,8 +8,14 @@ using System.Threading.Tasks;
 
 namespace RoomBookingApp.Persistance.Repositories
 {
-    public class RoomBookingSerive : IRoomBookingSerivce
+    public class RoomBookingService : IRoomBookingSerivce
     {
+        private readonly RoomBookingAppDbContext _context;
+
+        public RoomBookingService(RoomBookingAppDbContext context )
+        {
+            _context = context;
+        }
         public IEnumerable<Room> GetAvailableRooms(DateTime date)
         {
             throw new NotImplementedException();
