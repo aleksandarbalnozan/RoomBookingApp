@@ -1,9 +1,9 @@
 ﻿using Moq;
 using RoomBookingApp.Core.DataServices;
-using RoomBookingApp.Core.Domain;
 using RoomBookingApp.Core.Enums;
 using RoomBookingApp.Core.Models;
 using RoomBookingApp.Core.Processors;
+using RoomBookingApp.Domain;
 using Xunit;
 
 namespace RoomBookingApp.Core.Tests
@@ -63,7 +63,7 @@ namespace RoomBookingApp.Core.Tests
         [Fact]
         public void Should_Save_Room_Booking_Request()
         {
-            RoomBooking savedBooking = null;
+            RoomBooking? savedBooking = null;
             _roomBookingServiceMock.Setup(q => q.Save(It.IsAny<RoomBooking>()))
                 .Callback<RoomBooking>(booking =>
             {

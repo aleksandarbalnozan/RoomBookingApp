@@ -1,4 +1,5 @@
 ﻿using RoomBookingApp.Core.Enums;
+using RoomBookingApp.Domain.DomainModels;
 
 namespace RoomBookingApp.Core.Models
 {
